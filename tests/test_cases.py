@@ -57,15 +57,6 @@ def _submit(driver):
 	with allure.step("Click Submit button"):
 		driver.find_element(By.XPATH, e_sign_page.SUBMIT_XPATH).submit()
 
-
-def _get_description_error(driver):
-	return driver.find_element(By.XPATH, e_sign_page.DESCRIPTION_INPUT_ERROR_XPATH).text
-
-
-def _get_email_error(driver):
-	return driver.find_element(By.XPATH, e_sign_page.SENDER_EMAIL_INPUT_ERROR_XPATH).text
-
-
 # ===========================================================================
 # 1. Positive tests
 # ===========================================================================
@@ -492,4 +483,3 @@ def test_success_page_direct_access(driver):
 			EC.visibility_of_element_located((By.XPATH, success_page.SUCCESS_TEXT_XPATH))
 		)
 		assert heading.is_displayed()
-# -*- coding: utf-8 -*-
