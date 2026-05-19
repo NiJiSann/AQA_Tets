@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import allure
 import pytest
+from selenium.common import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -217,11 +218,14 @@ def test_validation_invalid_email_format(driver, bad_email):
 	_submit(driver)
 
 	with allure.step(f"Verify email error is shown for input '{bad_email}'"):
-		error = WebDriverWait(driver, 10).until(
-			EC.visibility_of_element_located(
-				(By.XPATH, e_sign_page.SENDER_EMAIL_INPUT_ERROR_XPATH)
+		try:
+			error = WebDriverWait(driver, 1).until(
+				EC.visibility_of_element_located(
+					(By.XPATH, e_sign_page.SENDER_EMAIL_INPUT_ERROR_XPATH)
+				)
 			)
-		)
+		except TimeoutException:
+			assert False, f"No error element shown for invalid email '{bad_email}'"
 		assert error.text, f"No error shown for invalid email '{bad_email}'"
 
 
