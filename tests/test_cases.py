@@ -12,7 +12,6 @@ import page.success_page as success_page
 VALID_FILE_PATH = "C:\\repo\\AQA_Tets\\test_data\\document-1mb.pdf"
 VALID_DESCRIPTION = "Test document description"
 VALID_EMAIL = "sender@example.com"
-INVALID_EMAIL = "not-an-email"
 
 
 # ---------------------------------------------------------------------------
